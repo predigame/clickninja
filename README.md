@@ -1,11 +1,24 @@
-The Click Ninja
-===================
-
-A coding instructional implementation based on the [Predigame Platform](http://predigame.com/). Many of the features have been curated by ~75 aspiring innovators (ages 10+) who love to flex their STEM prowess by putting ideas to code!
+# The Click Ninja
 
 Click Ninja was inspired by the app [fruit ninja](https://fruitninja.com/), but a little different since we have a mouse. As coders, we write the code and control how the game operates.
 
 [![IMAGE ALT TEXT](http://img.youtube.com/vi/jKYfLYLctHE/0.jpg)](https://youtu.be/jKYfLYLctHE "Click Ninja")
+
+## Prerequisites
+You'll need to have the Predigame platform installed, a trusty text editor handy, and the command prompt (or terminal) open to complete this tutorial. Visit [http://predigame.io](http://predigame.io) for installation instructions.
+
+## Getting Started
+To get things started, we're going download an existing Predigame game that has a few images and sound effects we can use to experiment. This can be done by typing the following the command in the terminal:
+
+```
+pred pull clickninja
+```
+
+Then change into the `clickninja` directory.
+
+```
+cd clickninja
+```
 
 ## Instructional Coverage
 
@@ -24,12 +37,6 @@ The game consists of three python (only one is needed to run the game):
 -   `clickninja-final.py` - A "camera ready" version of the game.
 -   `clickninja-levels.py` - An extension of `clickninja-final.py` but with level support.
 
-## Installation (TODO)
-
-You'll need the Predigame platform installed (visit  [http://predigame.com](http://predigame.com/)  if you need help).
-
--   Download a release:
--   Clone the repo:
 
 ## Running the Game
 
@@ -38,14 +45,16 @@ We recommend running all predigames from the command prompt/console/terminal. Be
 ```
 my_machine$ pred clickninja.py
 ```
-If you want to give one of the complete versions a spin, run one of these commands.
+
+If you want to give one of the complete versions a spin, run one of these commands:
+
 ```
 my_machine$ pred clickninja-final.py
 my_machine$ pred clickninja-levels.py
 ```
 
 
-# Basic Game
+## Basic Game
 
 The fundamentals for click ninja are pretty basic. Open a text editor and copy in the follow code. This will create a window of 20x14 blocks and a title of 'Click Ninja'
 ```python
@@ -55,7 +64,9 @@ TITLE = 'Click Ninja'
 ```
 Save your changes. Let's call the file `clickninja.py`.  Try running the game from the terminal using the `pred` command (you'll want to run this command from the directory where you saved the file).
 
-    my_machine$ pred clickninja.py
+```
+pred clickninja.py
+```
 
 This game doesn't do much just yet. Just an empty window titled "Click Ninja". So boring. Let's add some more code. We added a bunch of comments to describe the purpose of each line.
 
@@ -148,7 +159,7 @@ def destroy(s):
     s.destroy()
 ```
 ----------
-# Version 1: Keep Alive
+## Version 1: Keep Alive
 
 At this point we almost have a fully functional game. We just need to add a keep alive function. That is, we want to make sure we stop the game if we don't click on a circle. Look for this line of code in our game:
 
@@ -192,7 +203,7 @@ score(color = PURPLE)
 callback(spawn, 1)
 keydown('r', reset)   
 ```
-# Version 2: Throwing Food
+## Version 2: Throwing Food
 Let's swap out circles for pictures of food. The predigame platform makes it easy to load pictures in your game. Just copy them to an `images` subdirectory. The click ninja includes a few food images to get started. Let's see what we have.
 
     my_machine$ ls images
@@ -263,7 +274,7 @@ callback(spawn, 1)
 keydown('r', reset)   
 ```
 
-# Version 3: Bombs Away
+## Version 3: Bombs Away
 Instead of just drawing food, let's throw some bombs too! Unlike food, our players can't click on a bomb or else.. well, game over! For starters, let's assume there is a 25% (1 out of 4) chance a bomb will be thrown. In code we'll want to add two lines in our `spawn()` function.
 
 ```python
@@ -336,7 +347,7 @@ score(color = PURPLE)
 callback(spawn, 1)
 keydown('r', reset)   
 ```
-# Version 4: Better Score
+## Version 4: Better Score
 
 Our game ends quickly when we make a single mistake and that can make for a frustrating experience for even the best player. Let's improve our scoring with a few basic rules:
 
@@ -403,7 +414,7 @@ callback(spawn, 1)
 keydown('r', reset)   
 ```
 
-# Version 5: The Bonus Taco
+## Version 5: The Bonus Taco
 Just like a bomb, we can add a bonus taco that flies across the screen. We don't want to award our player too much, so we'll give the taco a 10% (1 out of 10) probability of showing on the screen. Here's what we'll need to change:
 
 ```python
@@ -485,9 +496,9 @@ score(color = PURPLE)
 callback(spawn, 1)
 keydown('r', reset)   
 ```
-# Other Fun Things
+## Other Fun Things
 
-## Spinning Sprites
+### Spinning Sprites
 We can code any image object to spin...
 ```python
 s.speed(speed).spin().clicked(failure)
@@ -505,7 +516,7 @@ s.speed(speed).spin(2.0).clicked(failure)
 
 ```
 
-## Background Wallpaper
+### Background Wallpaper
 A white background can get a little boring. Try adding this line to the top of your code:
 
 ```python
@@ -516,7 +527,7 @@ BACKGROUND = 'board'
 ```
 `BACKGROUND` files are stored in the **background** directory.
 
-## Sound Effects
+### Sound Effects
 Just like images, predigame supports sound effects. We've preloaded a few for the game. For instance, you can add a launching sound to the `spawn()` function:
 ```python
     target = choice(['bananas', 'cherries',
@@ -547,7 +558,7 @@ def failure(s):
         text('You Survived %s seconds' % time(), MAROON)
         gameover()
 ```
-## Effects
+### Effects
 While it's cool to click away on our food. We can also introduce a fading effect that makes it slowly dissolve on contact. To do this, simply change the last line in the `destroy` function.
 ```python
 def destroy(s):
@@ -561,7 +572,7 @@ def destroy(s):
     s.fade(0.75)
 ```
 
-## Red Splat on Contact
+### Red Splat on Contact
 Another fun thing is to leave a splat mark behind for each food item the player strikes. To do this, it's a simple extension to the `destroy` callback function.
 
 ```python
@@ -580,7 +591,7 @@ def destroy(s):
 ```
 Here the `s` variable (which is short for sprite) has a position. So we want to draw the red splat image at the location of the strike.
 
-## Exploding Bombs
+### Exploding Bombs
 Accidents happen! If the player accidentally clicks on a bomb, we should have them explode. It's a simple modification to the `failure` function.
 ```python
 def failure(s):
@@ -597,7 +608,7 @@ def failure(s):
 ```
 The key to the explosion is the `.pulse(0.05)` function call. The game will quickly pause, but the pulse is fast enough to provide an explosion effect.
 
-# Levels!
+## Levels!
 Click Ninja is 1000x better when you add levels! We won't get into the coding specifics for levels here - that'll be covered in other [Predigame](http://predigame.com) examples, but here is a leveled version of the code, with plenty of inline comments:
 
 ```python
